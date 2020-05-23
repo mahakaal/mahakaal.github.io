@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="ita">
+<html lang="IT">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Grafici andamento CoViD-19 in Italia.">
+        <meta name="keywords" content="corona virus, covid, covid-19, CoViD-19, CoViD, Italy, italia, ITALIA">
+        <meta name="author" content="Sukhdev Mohan">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css" />
         <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200&display=swap" rel="stylesheet" />
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -55,7 +58,12 @@
                         <h3>Andamento generale</h3>
                         <p>
                             Questo grafico raccoglie in forma 3-D i dati per totale dei casi registrati e i nuovi positivi. <br>
-                            FAcendo ruotare ognuno dei tre assi, si possono notare come &egrave; stato l'andamento della pandemia.
+                            Facendo ruotare ognuno dei tre assi, si possono notare come &egrave; stato l'andamento della pandemia. In particolare:
+                            <ol>
+                                <li>Tempo e Casi totali: visualizzando così la fase esponenziale e la campana discendente.</li>
+                                <li>Tempo e Nuovi positivi: visualizzando così l'aumento dei casi nel tempo</li>
+                                <li>Nuovi positivi e Casi totali: questo mostra l'incremento giornaliero nei casi totali</li>
+                            </ol>
                         </p>
                     </div>
                     <div id='3domni'></div>
@@ -68,7 +76,12 @@
                         <h3>Andamento generale</h3>
                         <p>
                             Questo grafico raccoglie il totale dei casi e i nuovi positivi e li mostra in scala logaritmica.<br> 
-                            Questo permette di visualizzare meglio la fase esponenziale ed evidenzier&agrave; quando le usciremo.
+                            Questo permette di visualizzare meglio la fase esponenziale ed evidenzier&agrave; quando ne usciremo.<br>
+                            I vantaggi sono cos&igrave; 
+                            <ol>
+                                <li>La dimensione temporale è fuori dal equazione, permettendo un oggettiva analisi</li>
+                                <li>Il logaritmo permette di analizzare meglio l'esponenziale, mostrandolo come un andamento lineare, così quando usciremo dalla fase, questo fatto verrà evidenziato al istante - cosa che risulta difficile negli altri grafici.</li>
+                            </ol>
                         </p>
                     </div>
                     <div id='loggraph'></div>
