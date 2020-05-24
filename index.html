@@ -129,6 +129,8 @@
                     }
                 }
             };
+            
+            var config = {'responsive': true}
 
             Plotly.d3.csv('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-andamento-nazionale/dpc-covid19-ita-andamento-nazionale.csv', function(err, rows){
                     function unpack(rows, key) {
@@ -150,7 +152,7 @@
                         color: 1,
                         reversescale: false
                     }
-                }], layout);
+                }], layout, config);
 
                 Plotly.newPlot('loggraph', [{
                     type: 'scatter',
@@ -167,7 +169,7 @@
                         autorange: true,
                         title: 'Nuovi Positvi'
                     }
-                });
+                }, config);
             });
         </script>
     </body>
