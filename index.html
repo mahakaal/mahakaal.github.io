@@ -1,184 +1,69 @@
 <!DOCTYPE html>
-<html lang="IT">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Grafici andamento CoViD-19 in Italia.">
-        <meta name="keywords" content="corona virus, covid, covid-19, CoViD-19, CoViD, Italy, italia, ITALIA">
-        <meta name="author" content="Sukhdev Mohan">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css" />
-        <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200&display=swap" rel="stylesheet" />
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        <style>
-            body {
-                font-family: 'Mukta', sans-serif;
-            }
-            #container {
-                width: 100%;
-                height: 100%;
-            }
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Grafici andamento CoViD-19 in Italia.">
+    <meta name="keywords" content="corona virus, covid, covid-19, CoViD-19, CoViD, Italy, italia, ITALIA">
+    <meta name="author" content="Sukhdev Mohan">
+    <link rel="stylesheet" href="css/bulma.min.css" />
+    <link href="css/style.css" rel="stylesheet" />
+    <title>Covid-19 in Italia</title>
+</head>
+<body>
+    <section class="section has-text-centered">
+        <div class="container">
+            <h1 class="title is-1 is-spaced">Andamento del CoViD-19 in Italia</h1>
+            <h2 class="subtitle">Uno sguardo sulla situazione, aggiornata quotidianamente</h2>
+        </div>
+    </section>
 
-            header {
-                width: 90%;
-                margin: auto;
-                text-align: center;
-            }
-
-            header h1 {
-                font-size: 50px;
-                font-weight: bolder;
-            }
-
-            h3 {
-                font-size: 18pt;
-            }
-
-            section {
-                border-bottom: 1px #999 solid;
-                width: 80%;
-                margin: auto;
-            }
-
-            section p {
-                text-align: justify;
-                font-size: 14pt;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="container">
-            <header>
-                <h1>Andamento CoViD-19 in Italia</h1>
-            </header>
-
-            <section>
-                <div class="graph">
-                    <div class="explanation">
-                        <h3>Andamento generale</h3>
-                        <p>
-                            Questo grafico raccoglie in forma 3-D i dati per totale dei casi registrati e i nuovi positivi. <br>
-                            Facendo ruotare ognuno dei tre assi, si possono notare come &egrave; stato l'andamento della pandemia. In particolare:
-                            <ol>
-                                <li>Tempo e Casi totali: visualizzando così la fase esponenziale e la campana discendente.</li>
-                                <li>Tempo e Nuovi positivi: visualizzando così l'aumento dei casi nel tempo</li>
-                                <li>Nuovi positivi e Casi totali: questo mostra l'incremento giornaliero nei casi totali</li>
-                            </ol>
-                        </p>
+    <section class="section">
+        <div class="container">
+            <nav class="level">
+                <div class="level-item">
+                    <div>
+                        <p class="heading">Totale positivi</p>
+                        <p class="title is is-spaced" id="totalPositives"></p>
+                        <p class="subtitle is-6 t-6">Variazione: <span id="variation"></span></p>
                     </div>
-                    <div id='3domni'></div>
                 </div>
-            </section>
-
-            <section>
-                <div class="graph">
-                    <div class="explanation">
-                        <h3>Andamento generale</h3>
-                        <p>
-                            Questo grafico raccoglie il totale dei casi e i nuovi positivi e li mostra in scala logaritmica.<br> 
-                            Questo permette di visualizzare meglio la fase esponenziale ed evidenzier&agrave; quando ne usciremo.<br>
-                            I vantaggi sono cos&igrave; 
-                            <ol>
-                                <li>La dimensione temporale è fuori dal equazione, permettendo un oggettiva analisi</li>
-                                <li>Il logaritmo permette di analizzare meglio l'esponenziale, mostrandolo come un andamento lineare, così quando usciremo dalla fase, questo fatto verrà evidenziato al istante - cosa che risulta difficile negli altri grafici.</li>
-                            </ol>
-                        </p>
+                <div class="level-item">
+                    <div>
+                        <p class="heading">Nuovi positivi</p>
+                        <p class="title is is-spaced" id="newPositives"></p>
                     </div>
-                    <div id='loggraph'></div>
                 </div>
+                <div class="level-item">
+                    <div>
+                        <p class="heading">Totale Casi</p>
+                        <p class="title" id="totalAffected"></p>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </section>
+
+    <div class="columns is-mobile">
+        <div class="column is-full">
+            <section>
+                <div id="general-graph"></div>
             </section>
             <section>
-                <div class="explanation">
-                    <p>
-                        Tutti i dati sono stati rilasciati dal ministro della salute in questa <a href="https://github.com/pcm-dpc/COVID-19">repository publica</a>
-                    </p>
-                </div>
+                <div id="new-cases-graph"></div>
+            </section>
+            <section>
+                <div id="new-cases-over-total-graph"></div>
             </section>
         </div>
-
-        <script>
-            Date.prototype.addDays = function(days) {
-                var date = new Date(this.valueOf());
-                date.setDate(date.getDate() + days);
-                return date;
-            }
-
-            var date = new Date();
-            var layout = {
-                height: 800,
-                scene: {
-                    xaxis: {
-                        title: 'Data'
-                    },
-                    yaxis: {
-                        title: "Totale casi"
-                    },
-                    zaxis: {
-                        title: "Nuovi Positivi"
-                    },
-                    camera: {
-                        center: {
-                            x: 0, y: 0, z: 0
-                        },
-                        eye: {
-                            x: 2.5, y: -2, z: 0.1
-                        },
-                        up: {
-                            x: 1, y: 0, z: 1
-                        }
-                    }
-                }
-            };
-            
-            var config = {responsive: true}
-
-            Plotly.d3.csv('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-andamento-nazionale/dpc-covid19-ita-andamento-nazionale.csv', function(err, rows){
-                    function unpack(rows, key) {
-                        return rows.map(function(row)
-                        { return row[key]; }); }
-
-                var date = unpack(rows , 'data');
-                var totale_casi = unpack(rows , 'totale_casi');
-                var nuovi_positivi = unpack(rows , 'nuovi_positivi');
-                Plotly.newPlot('3domni', [{
-                    type: 'scatter3d',
-                    mode: 'lines',
-                    x: date,
-                    y: totale_casi,
-                    z: nuovi_positivi,
-                    opacity: 1,
-                    line: {
-                        width: 6,
-                        color: 1,
-                        reversescale: false
-                    }
-                }], layout, config);
-
-                Plotly.newPlot('loggraph', [{
-                    type: 'scatter',
-                    x: totale_casi,
-                    y: nuovi_positivi
-                }], {
-                    xaxis: {
-                        type: 'log',
-                        autorange: true,
-                        title: 'Totale Casi'
-                    },
-                    yaxis: {
-                        type: 'log',
-                        autorange: true,
-                        title: 'Nuovi Positvi'
-                    }
-                }, config);
-            });
-        </script>
-
-<!-- CSS only -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-<!-- JS, Popper.js, and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    </body>
+        <div class="column is-full"></div>
+        <div class="column is-full"></div>
+    </div>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="js/data.js"></script>
+    <script type="text/javascript">
+        loadData();
+    </script>
+</body>
 </html>
