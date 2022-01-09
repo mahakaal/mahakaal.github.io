@@ -1,7 +1,12 @@
+const spinner = document.getElementById("spinner");
+
 async function getData(url) {
     try {
-        const response = await fetch(url)
-        return await response.json();
+        return await fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                return data;
+            })
     } catch (error) {
         console.error(error);
     }
@@ -49,6 +54,8 @@ async function loadData() {
     scatterGraph(general_graph, config);
     scatterGraph(new_cases_graph, config);
     scatterGraph(new_cases_over_total, config);
+
+    spinner.setAttribute('hidden', '');
 }
 
 function scatterGraph(properties, config) {

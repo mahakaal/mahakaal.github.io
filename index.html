@@ -15,23 +15,25 @@
     <section class="section has-text-centered">
         <div class="container">
             <h1 class="title is-1 is-spaced">Andamento del CoViD-19 in Italia</h1>
-            <h2 class="subtitle">Uno sguardo sulla situazione, aggiornata quotidianamente</h2>
+            <h2 class="subtitle is-4">Uno sguardo sulla situazione, aggiornata quotidianamente</h2>
+            <h3 class="subtitle is-5">A Cura di <strong>Sukhdev Mohan</strong></h3>
         </div>
     </section>
 
     <section class="section">
-        <div class="container">
+        <div class="container box">
+            <h3 class="title is-5">In sintesi</h3>
             <nav class="level">
                 <div class="level-item">
                     <div>
-                        <p class="heading">Totale positivi</p>
-                        <p class="title is is-spaced" id="totalPositives"></p>
+                        <p class="heading">Totale positivi attivi</p>
+                        <p class="title is-spaced" id="totalPositives"></p>
                         <p class="subtitle is-6 t-6">Variazione: <span id="variation"></span></p>
                     </div>
                 </div>
                 <div class="level-item">
                     <div>
-                        <p class="heading">Nuovi positivi</p>
+                        <p class="heading">Nuovi positivi odierni</p>
                         <p class="title is is-spaced" id="newPositives"></p>
                     </div>
                 </div>
@@ -47,19 +49,39 @@
 
     <div class="columns is-mobile">
         <div class="column is-full">
-            <section>
-                <div id="general-graph"></div>
+            <section class="section">
+                <div class="box has-text-centered">
+                    <h2 class="title is-4 is-spaced">Andamento Generale</h2>
+                    <div id="general-graph"></div>
+                </div>
             </section>
-            <section>
-                <div id="new-cases-graph"></div>
+            <section class="section">
+                <div class="box has-text-centered">
+                    <h2 class="title is-4 is-spaced">Vista Nuovi positivi/Totale casi</h2>
+                    <div id="new-cases-graph"></div>
+                </div>
             </section>
-            <section>
-                <div id="new-cases-over-total-graph"></div>
+            <section class="section">
+                <div class="box has-text-centered">
+                    <h2 class="title is-4 is-spaced">Vista Nuovi positivi/Totale casi (scala logaritmica)</h2>
+                    <div id="new-cases-over-total-graph"></div>
+                </div>
             </section>
         </div>
         <div class="column is-full"></div>
         <div class="column is-full"></div>
     </div>
+
+    <div id="spinner"></div>
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                Tutti i dati sono stati rilasciati dal ministro della salute in questa <a href="https://github.com/pcm-dpc/COVID-19">repository publica</a>
+            </p>
+        </div>
+    </footer>
+
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="js/data.js"></script>
     <script type="text/javascript">
