@@ -68,19 +68,22 @@ function scatterGraph(properties, config) {
             showgrid: true,
             zeroline: true,
             showline: true,
-            gridcolor: '#bdbdbd',
+            gridcolor: '#808080',
             type: properties.type,
             autorange: true,
-            title: properties.x_label
+            title: properties.x_label,
+            zerolinecolor: '#fff'
         },
         yaxis: {
             showgrid: true,
             zeroline: true,
             showline: true,
-            gridcolor: '#bdbdbd',
+            gridcolor: '#808080',
             type: properties.type,
             autorange: true,
-            title: properties.y_label
+            title: properties.y_label,
+            zerolinecolor: '#fff'
+
         },
         paper_bgcolor: '#363636',
         plot_bgcolor: '#363636',
