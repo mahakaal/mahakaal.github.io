@@ -65,14 +65,33 @@ function scatterGraph(properties, config) {
         y: properties.y
     }], {
         xaxis: {
+            showgrid: true,
+            zeroline: true,
+            showline: true,
+            gridcolor: '#bdbdbd',
             type: properties.type,
             autorange: true,
             title: properties.x_label
         },
         yaxis: {
+            showgrid: true,
+            zeroline: true,
+            showline: true,
+            gridcolor: '#bdbdbd',
             type: properties.type,
             autorange: true,
             title: properties.y_label
+        },
+        paper_bgcolor: '#363636',
+        plot_bgcolor: '#363636',
+        font: {
+            size: 14,
+            color: '#fff'
+        },
+        coloraxis: {
+            colorbar: {
+                bordercolor: '#fff'
+            }
         }
     }, config);
 }

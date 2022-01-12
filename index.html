@@ -11,17 +11,17 @@
     <link href="css/style.css" rel="stylesheet" />
     <title>Covid-19 in Italia</title>
 </head>
-<body>
+<body class="has-background-black-ter">
     <section class="section has-text-centered">
-        <div class="container">
+        <div class="notification is-dark">
             <h1 class="title is-1 is-spaced">Andamento del CoViD-19 in Italia</h1>
             <h2 class="subtitle is-4">Uno sguardo sulla situazione, aggiornata quotidianamente</h2>
-            <h3 class="subtitle is-5">A Cura di <strong>Sukhdev Mohan</strong></h3>
+            <h3 class="subtitle is-5">A Cura di <strong class="has-text-info">Sukhdev Mohan</strong></h3>
         </div>
     </section>
 
     <section class="section">
-        <div class="container box">
+        <div class="notification is-info">
             <h3 class="title is-5">In sintesi</h3>
             <nav class="level">
                 <div class="level-item">
@@ -47,23 +47,23 @@
         </div>
     </section>
 
-    <div class="columns is-mobile">
-        <div class="column is-full">
+    <div class="columns">
+        <div class="column">
             <section class="section">
-                <div class="box has-text-centered">
-                    <h2 class="title is-4 is-spaced">Andamento Generale</h2>
+                <div class="box has-text-centered has-background-dark">
+                    <h2 class="title is-4 is-spaced has-text-white">Andamento Generale</h2>
                     <div id="general-graph"></div>
                 </div>
             </section>
             <section class="section">
-                <div class="box has-text-centered">
-                    <h2 class="title is-4 is-spaced">Vista Nuovi positivi/Totale casi</h2>
+                <div class="box has-text-centered has-background-dark">
+                    <h2 class="title is-4 is-spaced has-text-white">Vista Nuovi positivi/Totale casi</h2>
                     <div id="new-cases-graph"></div>
                 </div>
             </section>
             <section class="section">
-                <div class="box has-text-centered">
-                    <h2 class="title is-4 is-spaced">Vista Nuovi positivi/Totale casi (scala logaritmica)</h2>
+                <div class="box has-text-centered has-background-dark">
+                    <h2 class="title is-4 is-spaced has-text-white">Vista Nuovi positivi/Totale casi (scala logaritmica)</h2>
                     <div id="new-cases-over-total-graph"></div>
                 </div>
             </section>
@@ -72,7 +72,7 @@
 
     <div id="spinner"></div>
 
-    <footer class="footer">
+    <footer class="footer has-background-dark">
         <div class="content has-text-centered">
             <p>
                 Tutti i dati sono stati rilasciati dal ministro della salute in questa <a href="https://github.com/pcm-dpc/COVID-19">repository publica</a>
